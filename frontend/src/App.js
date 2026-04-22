@@ -87,14 +87,14 @@ const toGraphData = (history = []) => {
 
 const getAqiInfo = (aqi) => {
   if (aqi === null || aqi === 0 || typeof aqi === 'undefined' || Number.isNaN(aqi)) {
-    return { color: '#9CA3AF', label: 'No Data', advice: 'Live AQI data is not available yet.' };
+    return { color: '#9CA3AF', label: 'No Data' };
   }
-  if (aqi <= 50) return { color: '#10B981', label: 'Good', advice: 'Great day to be active outside!' };
-  if (aqi <= 100) return { color: '#FBBF24', label: 'Moderate', advice: 'Acceptable quality. Limit outdoor exertion.' };
-  if (aqi <= 150) return { color: '#F97316', label: 'Unhealthy for Sensitive Groups', advice: 'Wear a mask if you have respiratory issues.' };
-  if (aqi <= 200) return { color: '#EF4444', label: 'Unhealthy', advice: 'Limit outdoor exercise.' };
-  if (aqi <= 300) return { color: '#8B5CF6', label: 'Very Unhealthy', advice: 'Avoid outdoor activity.' };
-  return { color: '#9F1239', label: 'Hazardous', advice: 'Health alert! Remain indoors. Wear N95 masks.' };
+  if (aqi <= 50) return { color: '#10B981', label: 'Good' };
+  if (aqi <= 100) return { color: '#FBBF24', label: 'Moderate' };
+  if (aqi <= 150) return { color: '#F97316', label: 'Unhealthy for Sensitive Groups' };
+  if (aqi <= 200) return { color: '#EF4444', label: 'Unhealthy' };
+  if (aqi <= 300) return { color: '#8B5CF6', label: 'Very Unhealthy' };
+  return { color: '#9F1239', label: 'Hazardous' };
 };
 
 const getLiveIcon = (color, options = {}) => {
@@ -202,22 +202,6 @@ const PollutantsPanel = ({ live }) => (
     </div>
   </div>
 );
-
-const AdvicePanel = ({ aqi }) => {
-  const info = getAqiInfo(aqi);
-
-  return (
-    <div className="bg-gray-800 rounded-xl p-4 shadow-xl border-t-4 shrink-0" style={{ borderColor: info.color }}>
-      <h3 className="text-md font-semibold mb-2 flex items-center">
-        <MapPin className="w-4 h-4 mr-2 text-gray-400" />
-        Healthcare Advice
-      </h3>
-      <p className="text-gray-300 text-sm">
-        {info.advice}
-      </p>
-    </div>
-  );
-};
 
 const AqiTrendChart = ({ graphData, lineColor, emptyMessage }) => (
   <div className="flex-1 min-h-0 w-full">
@@ -337,27 +321,14 @@ export default function App() {
   }, []);
 
   const citiesData = useMemo(() => {
-    const byName = new Map(CITY_META.map((city) => [city.name, city]));
-
-    const fromRanking = ranking
-      .map((entry) => {
-        const cityMeta = byName.get(entry.city);
-        if (!cityMeta) return null;
-        const latest = latestByCity[entry.city] || {};
-        return {
-          ...cityMeta,
-          aqi: entry.aqi,
-          live: latest
-        };
-      })
-      .filter(Boolean);
-
-    if (fromRanking.length > 0) return fromRanking;
+    const rankedAqiByCity = new Map(
+      ranking.map((entry) => [entry.city, Number.isFinite(Number(entry.aqi)) ? Number(entry.aqi) : null])
+    );
 
     return CITY_META
       .map((city) => ({
         ...city,
-        aqi: latestByCity[city.name]?.aqi ?? null,
+        aqi: rankedAqiByCity.get(city.name) ?? latestByCity[city.name]?.aqi ?? null,
         live: latestByCity[city.name] || {}
       }))
       .sort((a, b) => (b.aqi ?? -1) - (a.aqi ?? -1));
@@ -650,13 +621,13 @@ export default function App() {
           </div>
         </div>
       ) : !selectedCity ? (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-1 bg-gray-800 rounded-xl p-6 shadow-xl overflow-y-auto max-h-[52vh] lg:max-h-[calc(100vh-220px)]">
-            <h2 className="text-xl font-semibold mb-6 flex items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:h-[calc(100vh-170px)]">
+          <div className="lg:col-span-1 bg-gray-800 rounded-xl p-4 lg:p-5 shadow-xl h-[52vh] min-h-[320px] lg:h-full flex flex-col overflow-hidden">
+            <h2 className="text-xl font-semibold mb-4 flex items-center">
               <Activity className="w-5 h-5 mr-2 text-gray-400" />
               Live City Rankings
             </h2>
-            <div className="mb-4 text-xs text-gray-400 flex items-center justify-between gap-3">
+            <div className="mb-3 text-xs text-gray-400 flex items-center justify-between gap-2">
               <span className="flex items-center gap-1">
                 {connectionState === 'connected' ? (
                   <>
@@ -670,31 +641,33 @@ export default function App() {
               </span>
               <span className="truncate max-w-[180px]">{wsUrl}</span>
             </div>
-            <div className="space-y-4">
-              {citiesData.map((city, index) => {
-                const info = getAqiInfo(city.aqi);
-                return (
-                  <div
-                    key={city.id}
-                    onClick={() => openCityDashboard(city.id)}
-                    className="flex items-center justify-between p-4 bg-gray-700/50 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors border-l-4"
-                    style={{ borderLeftColor: info.color }}
-                  >
-                    <div className="flex items-center">
-                      <span className="text-gray-400 w-6 font-mono">{index + 1}.</span>
-                      <span className="font-medium text-lg ml-2">{city.name}</span>
+            <div className="flex-1 min-h-0 overflow-y-auto pr-1">
+              <div className="space-y-2">
+                {citiesData.map((city, index) => {
+                  const info = getAqiInfo(city.aqi);
+                  return (
+                    <div
+                      key={city.id}
+                      onClick={() => openCityDashboard(city.id)}
+                      className="flex items-center justify-between p-3 bg-gray-700/50 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors border-l-4"
+                      style={{ borderLeftColor: info.color }}
+                    >
+                      <div className="flex items-center">
+                        <span className="text-gray-400 w-6 font-mono">{index + 1}.</span>
+                        <span className="font-medium text-base ml-2">{city.name}</span>
+                      </div>
+                      <div className="flex flex-col items-end">
+                        <span className="font-bold text-lg" style={{ color: info.color }}>{city.aqi ?? '—'}</span>
+                        <span className="text-xs text-gray-400">{info.label}</span>
+                      </div>
                     </div>
-                    <div className="flex flex-col items-end">
-                      <span className="font-bold text-xl" style={{ color: info.color }}>{city.aqi ?? '—'}</span>
-                      <span className="text-xs text-gray-400">{info.label}</span>
-                    </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
           </div>
 
-          <div className="lg:col-span-2 bg-gray-800 rounded-xl p-4 shadow-xl h-[52vh] min-h-[320px] lg:h-[calc(100vh-220px)] lg:max-h-[620px] relative z-0">
+          <div className="lg:col-span-2 bg-gray-800 rounded-xl p-4 shadow-xl h-[52vh] min-h-[320px] lg:h-full relative z-0">
             <MapContainer center={DEFAULT_MAP_CENTER} zoom={5} className="w-full h-full rounded-lg" zoomControl>
               <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -723,7 +696,7 @@ export default function App() {
           </div>
         </div>
       ) : !selectedModel ? (
-        <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="space-y-3 animate-in fade-in slide-in-from-bottom-4 duration-500">
           <div className="flex items-start justify-between gap-4 overflow-x-auto">
             <div className="flex items-start gap-2 min-w-max">
               <button
@@ -750,8 +723,8 @@ export default function App() {
             </div>
           </div>
 
-          <div className="bg-gray-800 rounded-xl p-4 shadow-xl">
-            <h3 className="text-md font-semibold mb-3 flex items-center">
+          <div className="bg-gray-800 rounded-xl px-4 py-3 shadow-xl flex flex-wrap items-center gap-3">
+            <h3 className="text-sm font-semibold flex items-center shrink-0">
               <MapPin className="w-4 h-4 mr-2 text-gray-400" />
               Scope Selection
             </h3>
@@ -780,7 +753,7 @@ export default function App() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:h-[calc(100vh-280px)] lg:max-h-[620px]">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:h-[calc(100vh-250px)]">
             <div className="lg:col-span-2 flex flex-col gap-4 h-full">
               <div className="bg-gray-800 rounded-xl p-4 shadow-xl relative z-0 flex-1 min-h-[320px] h-[48vh] lg:h-full">
                 <MapContainer center={selectedCityCenter} zoom={11} className="w-full h-full rounded-lg" doubleClickZoom={false}>
@@ -808,9 +781,8 @@ export default function App() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-4 h-full overflow-hidden">
+            <div className="flex flex-col gap-3 h-full overflow-hidden">
               <PollutantsPanel live={selectedCity.live} />
-              <AdvicePanel aqi={selectedCity.aqi} />
               <div className="bg-gray-800 rounded-xl p-4 shadow-xl flex-1 flex flex-col min-h-0">
                 <h3 className="text-md font-semibold mb-2 flex items-center shrink-0">
                   <Activity className="w-4 h-4 mr-2 text-gray-400" />
@@ -826,7 +798,7 @@ export default function App() {
           </div>
         </div>
       ) : (
-        <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="space-y-3 animate-in fade-in slide-in-from-bottom-4 duration-500">
           <div className="flex items-start justify-between gap-4 overflow-x-auto">
             <div className="flex items-start gap-2 min-w-max">
               <button
@@ -844,8 +816,8 @@ export default function App() {
             </div>
           </div>
 
-          <div className="bg-gray-800 rounded-xl p-4 shadow-xl">
-            <h3 className="text-md font-semibold mb-3 flex items-center">
+          <div className="bg-gray-800 rounded-xl px-4 py-3 shadow-xl flex flex-wrap items-center gap-3">
+            <h3 className="text-sm font-semibold flex items-center shrink-0">
               <MapPin className="w-4 h-4 mr-2 text-gray-400" />
               Scope Selection
             </h3>
@@ -892,7 +864,7 @@ export default function App() {
             </div>
           </div>
 
-          <div className={`grid grid-cols-1 gap-6 ${selectedModel.id === 'causal' ? '' : 'lg:grid-cols-3 lg:h-[calc(100vh-280px)] lg:max-h-[640px]'}`}>
+          <div className={`grid grid-cols-1 gap-5 ${selectedModel.id === 'causal' ? '' : 'lg:grid-cols-3 lg:h-[calc(100vh-250px)]'}`}>
             {selectedModel.id !== 'causal' && (
               <div className="lg:col-span-2 bg-gray-800 rounded-xl p-4 shadow-xl relative z-0 min-h-[320px] h-[48vh] lg:h-full">
                 <MapContainer center={analysisMapCenter} zoom={analysisZoom} className="w-full h-full rounded-lg" doubleClickZoom={false}>
@@ -953,7 +925,7 @@ export default function App() {
               </div>
             )}
 
-            <div className="flex flex-col gap-4 h-full overflow-hidden">
+            <div className="flex flex-col gap-3 h-full overflow-hidden">
               <div className="bg-gray-800 rounded-xl p-4 shadow-xl border-l-4" style={{ borderLeftColor: resolvedAqiInfo.color }}>
                 <h3 className="text-md font-semibold mb-1">{selectedModel.label}</h3>
                 <p className="text-sm text-gray-300">{selectedModel.subtitle}</p>
@@ -966,7 +938,6 @@ export default function App() {
               </div>
 
               <PollutantsPanel live={resolvedLive} />
-              <AdvicePanel aqi={resolvedAqi} />
 
               <div className="bg-gray-800 rounded-xl p-4 shadow-xl flex-1 flex flex-col min-h-0">
                 <h3 className="text-md font-semibold mb-2 flex items-center shrink-0">
