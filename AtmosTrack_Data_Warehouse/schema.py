@@ -169,7 +169,7 @@ def make_location_key(city: str | None, hotspot: str | None) -> str:
 
 
 def make_time_key(ts: datetime) -> int:
-    return int(ts.strftime("%Y%m%d%H"))
+    return int(ts.strftime("%Y%m%d%H%M"))
 
 
 def make_fact_id(location_key: str, ts: datetime) -> str:

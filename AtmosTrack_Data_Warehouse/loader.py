@@ -48,6 +48,7 @@ class BigQueryLoader:
             f"{config.GCP_PROJECT_ID}.{self._dataset}.{self._dim_time_table_name}"
         )
         self._fact_table_id = f"{config.GCP_PROJECT_ID}.{self._dataset}.{self._fact_table_name}"
+        self._dml_merge_enabled = True
 
         self._ensure_dataset_and_tables()
 
@@ -108,6 +109,10 @@ class BigQueryLoader:
             )
             load_job.result()
 
+            if not self._dml_merge_enabled:
+                self._append_from_staging(staging_table_id, target_table_id)
+                return
+
             column_names = [field.name for field in schema]
             on_clause = " AND ".join([f"T.{k} = S.{k}" for k in key_columns])
             insert_columns = ", ".join(column_names)
@@ -128,10 +133,41 @@ class BigQueryLoader:
             )
 
             merge_sql = "\n".join(merge_parts)
-            self._client.query(merge_sql).result()
+            try:
+                self._client.query(merge_sql).result()
+            except Exception as err:
+                if self._is_dml_billing_error(err):
+                    self._dml_merge_enabled = False
+                    log.warning(
+                        "DML MERGE blocked by billing restrictions. "
+                        "Falling back to append-only load for this and future batches."
+                    )
+                    self._append_from_staging(staging_table_id, target_table_id)
+                else:
+                    raise
 
         finally:
             self._client.delete_table(staging_table_id, not_found_ok=True)
+
+    def _append_from_staging(self, staging_table_id: str, target_table_id: str) -> None:
+        copy_config = bigquery.CopyJobConfig(
+            write_disposition=bigquery.WriteDisposition.WRITE_APPEND
+        )
+        copy_job = self._client.copy_table(
+            sources=staging_table_id,
+            destination=target_table_id,
+            job_config=copy_config,
+        )
+        copy_job.result()
+
+    @staticmethod
+    def _is_dml_billing_error(err: Exception) -> bool:
+        message = str(err).lower()
+        return (
+            "billingnotenabled" in message
+            or "billing has not been enabled" in message
+            or "dml queries are not allowed in the free tier" in message
+        )
 
     def load(self, rows: list[dict]) -> int:
         """
