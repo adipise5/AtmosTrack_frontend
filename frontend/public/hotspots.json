@@ -1,0 +1,538 @@
+{
+  "Ahmedabad": {
+    "Chandkheda": {
+      "lat": 23.107,
+      "lon": 72.571
+    },
+    "Gyaspur": {
+      "lat": 22.95,
+      "lon": 72.6
+    },
+    "Maninagar": {
+      "lat": 22.999,
+      "lon": 72.603
+    },
+    "Raikhad": {
+      "lat": 23.018,
+      "lon": 72.58
+    },
+    "Rakhial": {
+      "lat": 23.033,
+      "lon": 72.623
+    },
+    "SAC_ISRO_Bopal": {
+      "lat": 23.033,
+      "lon": 72.468
+    },
+    "SAC_ISRO_Satellite": {
+      "lat": 23.028,
+      "lon": 72.544
+    },
+    "Sardar_Vallabhbhai_Patel_Stadium": {
+      "lat": 23.091,
+      "lon": 72.597
+    },
+    "SVPI_Airport_Hansol": {
+      "lat": 23.073,
+      "lon": 72.634
+    }
+  },
+  "Bengaluru": {
+    "Bapuji_Nagar": {
+      "lat": 12.95,
+      "lon": 77.53
+    },
+    "BTM_Layout": {
+      "lat": 12.916,
+      "lon": 77.61
+    },
+    "BWSSB_Kadabesanahalli": {
+      "lat": 12.935,
+      "lon": 77.69
+    },
+    "City_Railway_Station": {
+      "lat": 12.976,
+      "lon": 77.571
+    },
+    "Hebbal": {
+      "lat": 13.035,
+      "lon": 77.597
+    },
+    "Hombegowda_Nagar": {
+      "lat": 12.938,
+      "lon": 77.59
+    },
+    "Jayanagar_5th_Block": {
+      "lat": 12.927,
+      "lon": 77.583
+    },
+    "Jigani": {
+      "lat": 12.783,
+      "lon": 77.643
+    },
+    "Kasturi_Nagar": {
+      "lat": 13.018,
+      "lon": 77.658
+    },
+    "Peenya": {
+      "lat": 13.028,
+      "lon": 77.51
+    },
+    "RVCE_Mailasandra": {
+      "lat": 12.925,
+      "lon": 77.498
+    },
+    "Sanegurava_Halli": {
+      "lat": 13.07,
+      "lon": 77.6
+    },
+    "Shivapura_Peenya": {
+      "lat": 13.04,
+      "lon": 77.52
+    },
+    "Silk_Board": {
+      "lat": 12.917,
+      "lon": 77.622
+    }
+  },
+  "Chennai": {
+    "Alandur_Bus_Depot": {
+      "lat": 13.004,
+      "lon": 80.201
+    },
+    "Arumbakkam": {
+      "lat": 13.073,
+      "lon": 80.21
+    },
+    "Gandhi_Nagar_Ennore": {
+      "lat": 13.214,
+      "lon": 80.32
+    },
+    "Kodungaiyur": {
+      "lat": 13.137,
+      "lon": 80.265
+    },
+    "Manali": {
+      "lat": 13.164,
+      "lon": 80.258
+    },
+    "Manali_Village": {
+      "lat": 13.16,
+      "lon": 80.27
+    },
+    "Perungudi": {
+      "lat": 12.963,
+      "lon": 80.246
+    },
+    "Royapuram": {
+      "lat": 13.113,
+      "lon": 80.295
+    },
+    "Velachery_Res._Area": {
+      "lat": 12.979,
+      "lon": 80.221
+    }
+  },
+  "Delhi": {
+    "Alipur": {
+      "lat": 28.798,
+      "lon": 77.134
+    },
+    "Anand_Vihar": {
+      "lat": 28.646,
+      "lon": 77.315
+    },
+    "Ashok_Vihar": {
+      "lat": 28.692,
+      "lon": 77.181
+    },
+    "Aya_Nagar": {
+      "lat": 28.472,
+      "lon": 77.13
+    },
+    "Bawana": {
+      "lat": 28.8,
+      "lon": 77.03
+    },
+    "Burari_Crossing": {
+      "lat": 28.753,
+      "lon": 77.199
+    },
+    "Chandni_Chowk": {
+      "lat": 28.656,
+      "lon": 77.23
+    },
+    "CRRI_Mathura_Road": {
+      "lat": 28.551,
+      "lon": 77.273
+    },
+    "Dr._Karni_Singh_Shooting_Range": {
+      "lat": 28.498,
+      "lon": 77.257
+    },
+    "DTU": {
+      "lat": 28.75,
+      "lon": 77.117
+    },
+    "Dwarka_Sector_8": {
+      "lat": 28.592,
+      "lon": 77.068
+    },
+    "IGI_Airport_(T3)": {
+      "lat": 28.556,
+      "lon": 77.1
+    },
+    "IHBAS": {
+      "lat": 28.684,
+      "lon": 77.313
+    },
+    "ITO": {
+      "lat": 28.629,
+      "lon": 77.241
+    },
+    "Jahangirpuri": {
+      "lat": 28.727,
+      "lon": 77.162
+    },
+    "Jawaharlal_Nehru_Stadium": {
+      "lat": 28.582,
+      "lon": 77.234
+    },
+    "Lodhi_Road": {
+      "lat": 28.591,
+      "lon": 77.227
+    },
+    "Major_Dhyan_Chand_National_Stadium": {
+      "lat": 28.612,
+      "lon": 77.229
+    },
+    "Mandir_Marg": {
+      "lat": 28.635,
+      "lon": 77.201
+    },
+    "Mundka": {
+      "lat": 28.682,
+      "lon": 77.042
+    },
+    "Najafgarh": {
+      "lat": 28.609,
+      "lon": 76.979
+    },
+    "Narela": {
+      "lat": 28.852,
+      "lon": 77.09
+    },
+    "Nehru_Nagar": {
+      "lat": 28.567,
+      "lon": 77.257
+    },
+    "New_Moti_Bagh": {
+      "lat": 28.579,
+      "lon": 77.178
+    },
+    "North_Campus": {
+      "lat": 28.689,
+      "lon": 77.208
+    },
+    "NSIT_Dwarka": {
+      "lat": 28.61,
+      "lon": 77.038
+    },
+    "Okhla_Phase_2": {
+      "lat": 28.527,
+      "lon": 77.271
+    },
+    "Patparganj": {
+      "lat": 28.623,
+      "lon": 77.287
+    },
+    "Punjabi_Bagh": {
+      "lat": 28.672,
+      "lon": 77.134
+    },
+    "Pusa": {
+      "lat": 28.64,
+      "lon": 77.157
+    },
+    "R_K_Puram": {
+      "lat": 28.563,
+      "lon": 77.176
+    },
+    "Rohini": {
+      "lat": 28.704,
+      "lon": 77.102
+    },
+    "Shadipur": {
+      "lat": 28.651,
+      "lon": 77.156
+    },
+    "Sirifort": {
+      "lat": 28.55,
+      "lon": 77.215
+    },
+    "Sonia_Vihar": {
+      "lat": 28.719,
+      "lon": 77.25
+    },
+    "Sri_Aurobindo_Marg": {
+      "lat": 28.543,
+      "lon": 77.204
+    },
+    "Vivek_Vihar": {
+      "lat": 28.673,
+      "lon": 77.317
+    },
+    "Wazirpur": {
+      "lat": 28.698,
+      "lon": 77.166
+    }
+  },
+  "Hyderabad": {
+    "Bollaram_Industrial_Area": {
+      "lat": 17.546,
+      "lon": 78.332
+    },
+    "Central_University": {
+      "lat": 17.46,
+      "lon": 78.349
+    },
+    "ECIL_Kapra": {
+      "lat": 17.485,
+      "lon": 78.572
+    },
+    "ICRISAT_Patancheru": {
+      "lat": 17.512,
+      "lon": 78.275
+    },
+    "IDA_Pashamylaram": {
+      "lat": 17.521,
+      "lon": 78.22
+    },
+    "IITH_Kandi": {
+      "lat": 17.594,
+      "lon": 78.121
+    },
+    "Kokapet": {
+      "lat": 17.392,
+      "lon": 78.347
+    },
+    "Kompally_Municipal_Office": {
+      "lat": 17.545,
+      "lon": 78.485
+    },
+    "Nacharam_TSIIC_IALA": {
+      "lat": 17.427,
+      "lon": 78.559
+    },
+    "New_Malakpet": {
+      "lat": 17.373,
+      "lon": 78.51
+    },
+    "Ramachandrapuram": {
+      "lat": 17.52,
+      "lon": 78.315
+    },
+    "Sanathnagar": {
+      "lat": 17.455,
+      "lon": 78.45
+    },
+    "Somajiguda": {
+      "lat": 17.423,
+      "lon": 78.46
+    },
+    "Zoo_Park": {
+      "lat": 17.35,
+      "lon": 78.451
+    }
+  },
+  "Kolkata": {
+    "Ballygunge": {
+      "lat": 22.52,
+      "lon": 88.366
+    },
+    "Bidhannagar": {
+      "lat": 22.575,
+      "lon": 88.42
+    },
+    "Fort_William": {
+      "lat": 22.556,
+      "lon": 88.339
+    },
+    "Jadavpur": {
+      "lat": 22.495,
+      "lon": 88.37
+    },
+    "Rabindra_Bharati_University": {
+      "lat": 22.576,
+      "lon": 88.36
+    },
+    "Rabindra_Sarobar": {
+      "lat": 22.511,
+      "lon": 88.352
+    },
+    "Victoria": {
+      "lat": 22.544,
+      "lon": 88.342
+    }
+  },
+  "Mumbai": {
+    "Bandra": {
+      "lat": 19.059,
+      "lon": 72.829
+    },
+    "Bandra_Kurla_Complex": {
+      "lat": 19.068,
+      "lon": 72.869
+    },
+    "Borivali_East": {
+      "lat": 19.23,
+      "lon": 72.86
+    },
+    "Byculla": {
+      "lat": 18.975,
+      "lon": 72.835
+    },
+    "Chakala_Andheri_East": {
+      "lat": 19.11,
+      "lon": 72.86
+    },
+    "Chembur": {
+      "lat": 19.06,
+      "lon": 72.9
+    },
+    "Chhatrapati_Shivaji_Intl._Airport_(T2)": {
+      "lat": 19.089,
+      "lon": 72.865
+    },
+    "Colaba": {
+      "lat": 18.906,
+      "lon": 72.814
+    },
+    "Deonar": {
+      "lat": 19.05,
+      "lon": 72.93
+    },
+    "Ghatkopar": {
+      "lat": 19.085,
+      "lon": 72.91
+    },
+    "Kandivali_East": {
+      "lat": 19.205,
+      "lon": 72.865
+    },
+    "Kandivali_West": {
+      "lat": 19.205,
+      "lon": 72.84
+    },
+    "Kherwadi_Bandra_East": {
+      "lat": 19.065,
+      "lon": 72.855
+    },
+    "Khindipada_Bhandup_West": {
+      "lat": 19.15,
+      "lon": 72.94
+    },
+    "Kurla": {
+      "lat": 19.072,
+      "lon": 72.882
+    },
+    "Malad_West": {
+      "lat": 19.185,
+      "lon": 72.83
+    },
+    "Mazgaon": {
+      "lat": 18.96,
+      "lon": 72.84
+    },
+    "Mindspace_Malad_West": {
+      "lat": 19.188,
+      "lon": 72.83
+    },
+    "Mulund_West": {
+      "lat": 19.175,
+      "lon": 72.955
+    },
+    "Navy_Nagar_Colaba": {
+      "lat": 18.9,
+      "lon": 72.81
+    },
+    "Powai": {
+      "lat": 19.117,
+      "lon": 72.906
+    },
+    "Sewri": {
+      "lat": 18.997,
+      "lon": 72.858
+    },
+    "Shivaji_Nagar": {
+      "lat": 19.055,
+      "lon": 72.915
+    },
+    "Siddharth_Nagar_Worli": {
+      "lat": 19,
+      "lon": 72.82
+    },
+    "Sion": {
+      "lat": 19.043,
+      "lon": 72.865
+    },
+    "Vasai_West": {
+      "lat": 19.391,
+      "lon": 72.839
+    },
+    "Vile_Parle_West": {
+      "lat": 19.1,
+      "lon": 72.84
+    }
+  },
+  "Pune": {
+    "Alandi": {
+      "lat": 18.677,
+      "lon": 73.899
+    },
+    "Bhosari": {
+      "lat": 18.629,
+      "lon": 73.847
+    },
+    "Bhumkar_Nagar": {
+      "lat": 18.599,
+      "lon": 73.753
+    },
+    "Hadapsar": {
+      "lat": 18.508,
+      "lon": 73.926
+    },
+    "Karve_Road": {
+      "lat": 18.5,
+      "lon": 73.82
+    },
+    "Katraj_Dairy": {
+      "lat": 18.457,
+      "lon": 73.86
+    },
+    "Mhada_Colony": {
+      "lat": 18.52,
+      "lon": 73.85
+    },
+    "MIT_Kothrud": {
+      "lat": 18.52,
+      "lon": 73.81
+    },
+    "Panchawati_Pashan": {
+      "lat": 18.54,
+      "lon": 73.79
+    },
+    "Revenue_Colony_Shivajinagar": {
+      "lat": 18.53,
+      "lon": 73.85
+    },
+    "Savitribai_Phule_Pune_University": {
+      "lat": 18.553,
+      "lon": 73.824
+    },
+    "Transport_Nagar_Nigdi": {
+      "lat": 18.65,
+      "lon": 73.77
+    }
+  }
+}
