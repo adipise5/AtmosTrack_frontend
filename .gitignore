@@ -1,0 +1,21 @@
+# Log files
+*.log
+
+# Java Build artifacts (Maven/Gradle)
+/target/
+/build/
+*.jar
+*.war
+*.ear
+
+# Node dependencies
+/frontend/node_modules/
+npm-debug.log
+yarn-error.log
+
+# IDE and OS files
+.idea/
+*.iml
+*.iws
+.DS_Store
+Thumbs.db
